@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Package : AbstractItem
+public class Key : AbstractItem
 {
     public override void Collect(Inventory inventory)
     {
         base.Collect(inventory);
-        Debug.Log("Picked up package...");
+        Debug.Log("Collected key...");
     }
 }

@@ -1,10 +1,19 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Inventory inventory;
-    [SerializeField] private Image[] slotImages;
+    [SerializeField] private Sprite selectedSprite;
+    [SerializeField] private Sprite emptySprite;
+    [SerializeField] private InventoryCellUI[] cells;
+    private int lastSelected = -1;
+
+    private void Start()
+    {
+        HighlightSelectedSlot(0);
+    }
 
     private void OnEnable()
     {
@@ -20,21 +29,27 @@ public class InventoryUI : MonoBehaviour
 
     private void UpdateUI(AbstractItem[] items)
     {
-        for (int i = 0; i < slotImages.Length; i++)
+        for (int i = 0; i < cells.Length; i++)
         {
             if (items[i] != null)
             {
-                slotImages[i].sprite = items[i].GetIcon();
+                cells[i].UpdateCellItem(items[i].Icon);
             }
             else
             {
-                slotImages[i].sprite = null;
+                cells[i].UpdateCellItem(emptySprite);
             }
         }
     }
 
-    private void HighlightSelectedSlot(int selectedSlot)
+    private void HighlightSelectedSlot(int selectedID)
     {
-        // Логика для подсвечивания выбранного слота
+        cells[selectedID].SelectCell();
+        if (lastSelected >= 0)
+        {
+            cells[lastSelected].DeselectCell();
+        }
+
+        lastSelected = selectedID;
     }
 }

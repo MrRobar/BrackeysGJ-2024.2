@@ -1,12 +1,18 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
+[RequireComponent(typeof(Player))]
 public class Interactor : MonoBehaviour
 {
+    [SerializeField] private Player player;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float interactionDistance = 1f;
     [SerializeField] private LayerMask interactionLayerMask;
     [SerializeField] private AbstractItem heldAbstractItem;
+
+    private void Awake()
+    {
+        player = GetComponent<Player>();
+    }
 
     private void Update()
     {
@@ -26,11 +32,11 @@ public class Interactor : MonoBehaviour
             {
                 if (heldAbstractItem != null)
                 {
-                    interactable.InteractWith(heldAbstractItem);
+                    interactable.InteractWith(heldAbstractItem, player);
                 }
                 else
                 {
-                    interactable.Interact();
+                    interactable.Interact(player);
                 }
             }
         }

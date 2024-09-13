@@ -6,14 +6,14 @@ public class Bed : IInteractable
     public UnityEvent OnInteract { get; }
     public string InteractionText { get; }
 
-    public void Interact()
+    public void Interact(Player player)
     {
         Debug.Log("Laying on the bed...");
         OnInteract?.Invoke();
     }
 
-    public void InteractWith(AbstractItem abstractItem)
+    public void InteractWith(AbstractItem abstractItem, Player player)
     {
-        Interact();
+        Interact(player);
     }
 }

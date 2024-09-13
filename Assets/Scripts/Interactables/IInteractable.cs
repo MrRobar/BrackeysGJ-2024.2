@@ -4,6 +4,6 @@ public interface IInteractable
 {
     public UnityEvent OnInteract { get; }
     public string InteractionText { get; }
-    public void Interact();
-    public void InteractWith(AbstractItem abstractItem);
+    public void Interact(Player player);
+    public void InteractWith(AbstractItem abstractItem, Player player);
 }
