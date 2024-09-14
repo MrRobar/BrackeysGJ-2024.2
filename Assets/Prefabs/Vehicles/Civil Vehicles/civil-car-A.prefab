@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 2415246734695040662}
   - component: {fileID: 459465371661595228}
   - component: {fileID: 134416672223090910}
-  - component: {fileID: 1763259168890493124}
-  - component: {fileID: 5816338331272506899}
   - component: {fileID: 7059168917653552635}
-  m_Layer: 0
+  - component: {fileID: 4306408770099022325}
+  m_Layer: 3
   m_Name: civil-car-A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,46 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectDetector: {fileID: 4388557773923033056}
-  pathFollow: {fileID: 1763259168890493124}
-  agent: {fileID: 0}
---- !u!114 &1763259168890493124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116873390560433033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27ab3671522403945a7758cb93ac4d4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 5816338331272506899}
-  endPoint: {fileID: 0}
-  distanceBetweenPoints: 5
-  pathPoints: []
---- !u!195 &5816338331272506899
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116873390560433033}
-  m_Enabled: 1
-  m_AgentTypeID: -334000983
-  m_Radius: 2.2229092
-  m_Speed: 5
-  m_Acceleration: 5
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2.96845
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  speed: 50
 --- !u!64 &7059168917653552635
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -170,6 +130,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7362070657441252106, guid: 58f51014f37094ead8feba46c78b1868, type: 3}
+--- !u!54 &4306408770099022325
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116873390560433033}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7618221346131381383
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +168,7 @@ GameObject:
   - component: {fileID: 9106804708954630324}
   - component: {fileID: 3768930117931838680}
   - component: {fileID: 879900777653227669}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: civil-car-A-rear-wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +252,7 @@ GameObject:
   - component: {fileID: 1979603198051583420}
   - component: {fileID: 8057376514192003171}
   - component: {fileID: 8883815729166038388}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: civil-car-A-front-wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,6 +387,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Detector
+      objectReference: {fileID: 0}
+    - target: {fileID: 6166201028318364193, guid: 51709c2bb0364e84ebe5959c7f7504f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

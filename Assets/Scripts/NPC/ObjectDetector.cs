@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class ObjectDetector : MonoBehaviour
 {
-    public event Action OnObjectDetected;
+    public event Action<string> OnObjectDetected;
     public event Action OnObjectLost;
 
     private void OnTriggerEnter(Collider other)
     {
-        OnObjectDetected?.Invoke();
+        OnObjectDetected?.Invoke(other.tag);
     }
 
     private void OnTriggerExit(Collider other)

@@ -3,12 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Edge
+  - Detector
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ignore NavMesh Bake
   - Water
   - UI
   - 

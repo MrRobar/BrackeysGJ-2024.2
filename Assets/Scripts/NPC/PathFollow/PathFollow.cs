@@ -6,6 +6,7 @@ public class PathFollow : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform endPoint;
+    [SerializeField] private Transform routes;
     [SerializeField] private int distanceBetweenPoints = 5;
     [SerializeField] private List<Transform> pathPoints = new List<Transform>(); // Список промежуточных точек
     private Transform currentPoint;
@@ -16,6 +17,8 @@ public class PathFollow : MonoBehaviour
     public void GeneratePath()
     {
         pathPoints.Clear(); // Очищаем старые точки
+        var pathHolder = new GameObject(transform.name);
+        pathHolder.transform.SetParent(routes);
         var startPos = transform.position;
         var endPos = endPoint.transform.position;
         var distance = Vector3.Distance(startPos, endPos);
@@ -26,10 +29,12 @@ public class PathFollow : MonoBehaviour
             // Интерполируем точки между началом и концом пути
             var pointPosition = Vector3.Lerp(startPos, endPos, (float)i / amount);
             var newPoint = Instantiate(endPoint, pointPosition, Quaternion.identity);
+            newPoint.SetParent(pathHolder.transform);
             pathPoints.Add(newPoint); // Добавляем в список промежуточных точек
         }
 
         pathPoints.Add(endPoint);
+        endPoint.SetParent(pathHolder.transform);
 
         // Сбрасываем текущий индекс точки
         currentPointIndex = -1;

@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 1285620193940584616}
   - component: {fileID: 3905614323635276898}
   - component: {fileID: 7531267043943798818}
-  - component: {fileID: 6468171092477367693}
-  - component: {fileID: 8224727826324614479}
   - component: {fileID: 7720857431401755193}
-  m_Layer: 0
+  - component: {fileID: -7449600905912409950}
+  m_Layer: 3
   m_Name: fire-truck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,46 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectDetector: {fileID: 1805851825589678924}
-  pathFollow: {fileID: 6468171092477367693}
-  agent: {fileID: 8224727826324614479}
---- !u!114 &6468171092477367693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3257083264415493559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27ab3671522403945a7758cb93ac4d4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 8224727826324614479}
-  endPoint: {fileID: 0}
-  distanceBetweenPoints: 5
-  pathPoints: []
---- !u!195 &8224727826324614479
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3257083264415493559}
-  m_Enabled: 1
-  m_AgentTypeID: -334000983
-  m_Radius: 3.918775
-  m_Speed: 7
-  m_Acceleration: 6
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 6.3505177
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  speed: 60
 --- !u!64 &7720857431401755193
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -169,6 +129,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4454004683372770740, guid: 3b3ed1ca82ef745c999ec24ef9d2a66c, type: 3}
+--- !u!54 &-7449600905912409950
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3257083264415493559}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &3623655487320006111
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +167,7 @@ GameObject:
   - component: {fileID: 4670789270006790683}
   - component: {fileID: 6966151929736868118}
   - component: {fileID: 829298740043140187}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: fire-truck-front-wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +251,7 @@ GameObject:
   - component: {fileID: 5229941456191880170}
   - component: {fileID: 1607892217857775470}
   - component: {fileID: 6761138830865658397}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: fire-truck-rear-wheels-A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +335,7 @@ GameObject:
   - component: {fileID: 905620745864122909}
   - component: {fileID: 6872269354620345765}
   - component: {fileID: 5821220956823888335}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: fire-truck-rear-wheels-B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,6 +470,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Detector
+      objectReference: {fileID: 0}
+    - target: {fileID: 6166201028318364193, guid: 51709c2bb0364e84ebe5959c7f7504f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

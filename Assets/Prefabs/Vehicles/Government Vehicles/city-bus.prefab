@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8705906724547382547}
   - component: {fileID: 4509582596806564968}
   - component: {fileID: 2495604735049226364}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bus-rear-wheels.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,10 +96,9 @@ GameObject:
   - component: {fileID: 6981631233320922499}
   - component: {fileID: 5118142876052445513}
   - component: {fileID: 6807619259757182058}
-  - component: {fileID: 5834950564324517087}
-  - component: {fileID: 450869343724220297}
   - component: {fileID: 2299389012104015073}
-  m_Layer: 0
+  - component: {fileID: -8407235834902046399}
+  m_Layer: 3
   m_Name: city-bus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,46 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectDetector: {fileID: 1742706990149160346}
-  pathFollow: {fileID: 5834950564324517087}
-  agent: {fileID: 450869343724220297}
---- !u!114 &5834950564324517087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6631470891637340316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27ab3671522403945a7758cb93ac4d4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 450869343724220297}
-  endPoint: {fileID: 0}
-  distanceBetweenPoints: 5
-  pathPoints: []
---- !u!195 &450869343724220297
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6631470891637340316}
-  m_Enabled: 1
-  m_AgentTypeID: -334000983
-  m_Radius: 5.3721123
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 6.2361035
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  speed: 20
 --- !u!64 &2299389012104015073
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -254,6 +214,33 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2965065874869752530, guid: addc1bcc746114bef9d15204466e59bf, type: 3}
+--- !u!54 &-8407235834902046399
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6631470891637340316}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8720319095190029698
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +252,7 @@ GameObject:
   - component: {fileID: 1095744270528788652}
   - component: {fileID: 762528149169789447}
   - component: {fileID: 2484325410416935591}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bus-front-wheels.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -400,6 +387,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Detector
+      objectReference: {fileID: 0}
+    - target: {fileID: 6166201028318364193, guid: 51709c2bb0364e84ebe5959c7f7504f7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
