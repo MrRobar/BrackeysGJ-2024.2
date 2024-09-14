@@ -8,32 +8,34 @@ public class Work : MonoBehaviour
     public static event Action Completed;
     
     public Order[] Orders => availableOrders.ToArray();
+    
     [SerializeField] private MailBox[] deliveryTargets;
     private List<Order> availableOrders; 
 
     private void Awake()
     {
-        availableOrders = new List<Order>();
         GenerateOrders();
     }
 
     private void GenerateOrders()
     {
+        availableOrders = new List<Order>();
+        
         for (int i = 0; i < deliveryTargets.Length; i++)
         {
             Order order = new Order(deliveryTargets[i]);
             availableOrders.Add(order);
-            order.Complete += OnOrderComplete;
+            order.Completed += OnOrderCompleted;
         }
     }
 
-    private void OnOrderComplete(Order order)
+    private void OnOrderCompleted(Order order)
     {
         availableOrders.Remove(order);
 
         if (availableOrders.Count == 0)
         {
-            Completed.Invoke();
+            Completed?.Invoke();
         }
     }
     
@@ -55,7 +57,7 @@ public class Work : MonoBehaviour
 
 public class Order
 {
-    public event Action<Order> Complete;
+    public event Action<Order> Completed;
     public MailBox DeliveryTarget { get; private set; }
 
     public Order(MailBox deliveryTarget)
@@ -67,7 +69,7 @@ public class Order
     public void CompleteOrder()
     {
         DeliveryTarget.PackageDelivered -= CompleteOrder;
-        Complete?.Invoke(this);
+        Completed?.Invoke(this);
     }
     public override string ToString()
     {

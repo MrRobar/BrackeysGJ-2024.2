@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MailBox : IInteractable
+public class MailBox : MonoBehaviour, IInteractable
 {
     public event Action PackageDelivered;
     public UnityEvent OnInteract { get; }
@@ -18,6 +18,7 @@ public class MailBox : IInteractable
         if (abstractItem.TryGetComponent(out Package package))
         {
             Debug.Log("Putted a package in here...");
+            player.Inventory.RemoveItem(package);
             PackageDelivered?.Invoke();
         }
         

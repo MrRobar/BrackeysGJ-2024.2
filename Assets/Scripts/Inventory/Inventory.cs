@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
 
     public event Action<int> OnSelectedSlot;
     public event Action<AbstractItem[]> OnInventoryUpdated;
+    
+    public AbstractItem CurrentItem => items[currentItemId];
 
     private void Update()
     {
@@ -82,5 +84,18 @@ public class Inventory : MonoBehaviour
         items[currentItemId].Drop();
         items[currentItemId] = null;
         OnInventoryUpdated?.Invoke(items);
+    }
+    
+    public void RemoveItem(AbstractItem itemToRemove)
+    {
+        foreach(var item in items)
+        {
+            if (item == itemToRemove)
+            {
+                items[currentItemId] = null;
+                OnInventoryUpdated?.Invoke(items);
+                return;
+            }
+        }
     }
 }

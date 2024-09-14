@@ -72,6 +72,10 @@ public class Day
             }
         }
         
+        foreach (var rule in rules)
+        {
+            rule.Completed -= OnRuleComplete;
+        }
         Complete?.Invoke();
     }
 }

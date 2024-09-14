@@ -26,6 +26,7 @@ public abstract class AbstractItem : MonoBehaviour, IInteractable, ICollectable
 
     public virtual void Collect(Inventory inventory)
     {
+        gameObject.SetActive(false);
         inventory.AddItem(this);
         OnInteract.Invoke();
     }
