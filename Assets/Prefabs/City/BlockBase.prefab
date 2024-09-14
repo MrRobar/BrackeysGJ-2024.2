@@ -77,6 +77,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1741296234110901780}
   - component: {fileID: 8284591456800205282}
+  - component: {fileID: 2153898364749845656}
   m_Layer: 0
   m_Name: RoadLine (1)
   m_TagString: Untagged
@@ -121,8 +122,24 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 11.256487, y: 0.9055308, z: 33.67122}
-  m_Center: {x: -0.0000009536743, y: -0.40947288, z: 16.87085}
+  m_Size: {x: 11.256487, y: 0.9055308, z: 30.100548}
+  m_Center: {x: -0.0000009536743, y: -0.40947288, z: 15.085514}
+--- !u!114 &2153898364749845656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2820914039683979525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 8, y: 5, z: 50}
+  m_Center: {x: -0.009130478, y: 2.4689643, z: 5.0157547}
+  m_Area: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &5076318265983598232
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8853475507489253053}
   - component: {fileID: 4221653337780267698}
+  - component: {fileID: 3816230770579349413}
   m_Layer: 0
   m_Name: RoadLine
   m_TagString: Untagged
@@ -282,8 +300,24 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 11.256487, y: 0.9055308, z: 33.67122}
-  m_Center: {x: -0.0000009536743, y: -0.40947288, z: 16.87085}
+  m_Size: {x: 11.256487, y: 0.9055308, z: 30.037905}
+  m_Center: {x: -0.0000009536743, y: -0.40947288, z: 15.054193}
+--- !u!114 &3816230770579349413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7535660890960094249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 8, y: 5, z: 50}
+  m_Center: {x: 0.011694908, y: 2.4554229, z: 5.004383}
+  m_Area: 0
+  m_AffectedAgents: ffffffff
 --- !u!1001 &1803734077604394508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -642,6 +676,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: two-lane-intersaction (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629751442455438227, guid: 83fa5e61c8e1b4094b15fc26ed0782ae,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
