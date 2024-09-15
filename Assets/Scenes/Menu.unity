@@ -156,9 +156,7 @@ MonoBehaviour:
   - sceneId: 1
     rules:
     - {fileID: 11400000, guid: 787707b1caef3b64ea1ca9d4cd3f4d35, type: 2}
-  - sceneId: 2
-    rules:
-    - {fileID: 11400000, guid: 787707b1caef3b64ea1ca9d4cd3f4d35, type: 2}
+    - {fileID: 11400000, guid: a11a24010951cad49b8da8dbb51b1d40, type: 2}
   - sceneId: 3
     rules: []
 --- !u!4 &27708624

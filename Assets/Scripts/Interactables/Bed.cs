@@ -1,15 +1,19 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Bed : IInteractable
+public class Bed : MonoBehaviour, IInteractable
 {
     public UnityEvent OnInteract { get; }
     public string InteractionText { get; }
+    [SerializeField] private SimpleRule rule;
 
     public void Interact(Player player)
     {
-        Debug.Log("Laying on the bed...");
-        OnInteract?.Invoke();
+        if (Work.Orders.Length == 0)
+        {
+            rule.Complete();
+            OnInteract?.Invoke();
+        }
     }
 
     public void InteractWith(AbstractItem abstractItem, Player player)

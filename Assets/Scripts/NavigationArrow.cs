@@ -3,6 +3,7 @@ using UnityEngine;
 public class NavigationArrow : MonoBehaviour
 {
     [SerializeField] private Player player;
+    [SerializeField] private Transform bedTransform;
     private Vector3 target;
     private Package nearestPackage;
 
@@ -10,7 +11,7 @@ public class NavigationArrow : MonoBehaviour
     {
         if (player.Inventory.CountItemsOfType<Package>() < Work.Orders.Length)
         {
-            if (!nearestPackage || !nearestPackage.enabled)
+            if (!nearestPackage || nearestPackage.InInventory)
             {
                 var packages = FindObjectsOfType<Package>();
                 nearestPackage = packages[0];
@@ -30,6 +31,10 @@ public class NavigationArrow : MonoBehaviour
         else if (Work.Orders.Length > 0)
         {
             target = Work.Orders[0].DeliveryTarget.transform.position;
+        }
+        else
+        {
+            target = bedTransform.position;
         }
         
         transform.LookAt(target);

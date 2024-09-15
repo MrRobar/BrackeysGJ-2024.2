@@ -5,7 +5,7 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] private AbstractItem[] items = new AbstractItem[5];
     [SerializeField] private int currentItemId = 0;
-
+    [SerializeField] private Transform hand;
     public event Action<int> OnSelectedSlot;
     public event Action<AbstractItem[]> OnInventoryUpdated;
     
@@ -29,11 +29,11 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha5)) SelectSlot(4);
 
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (scroll > 0f)
+        if (scroll < 0f)
         {
             SelectNextSlot();
         }
-        else if (scroll < 0f)
+        else if (scroll > 0f)
         {
             SelectPreviousSlot();
         }
@@ -61,24 +61,28 @@ public class Inventory : MonoBehaviour
 
         if (slotId >= 0 && slotId < items.Length)
         {
+            if (items[currentItemId])
+            {
+                items[currentItemId].gameObject.SetActive(false);
+            }
             currentItemId = slotId;
+            if (items[currentItemId])
+            {
+                items[currentItemId].gameObject.SetActive(true);
+            }
+            
             OnSelectedSlot?.Invoke(currentItemId);
-            // Debug.Log($"Selected slot: {currentItemId}");
         }
     }
 
     private void SelectNextSlot()
     {
-        currentItemId = (currentItemId + 1) % items.Length;
-        OnSelectedSlot?.Invoke(currentItemId);
-        // Debug.Log($"Selected next slot: {currentItemId}");
+        SelectSlot((currentItemId + 1) % items.Length);
     }
 
     private void SelectPreviousSlot()
     {
-        currentItemId = (currentItemId - 1 + items.Length) % items.Length;
-        OnSelectedSlot?.Invoke(currentItemId);
-        //  Debug.Log($"Selected previous slot: {currentItemId}");
+        SelectSlot((currentItemId - 1) % items.Length);
     }
 
     public void AddItem(AbstractItem item)
@@ -89,12 +93,16 @@ public class Inventory : MonoBehaviour
         }
 
         items[currentItemId] = item;
+        item.transform.parent = hand;
+        item.transform.localPosition = Vector3.zero;
+        item.transform.localRotation = Quaternion.identity;
         OnInventoryUpdated?.Invoke(items);
     }
 
     public void DropCurrentItem()
     {
         items[currentItemId].Drop();
+        items[currentItemId].transform.parent = null;
         items[currentItemId] = null;
         OnInventoryUpdated?.Invoke(items);
     }
@@ -105,6 +113,7 @@ public class Inventory : MonoBehaviour
         {
             if (item == itemToRemove)
             {
+                Destroy(item.gameObject);
                 items[currentItemId] = null;
                 OnInventoryUpdated?.Invoke(items);
                 return;

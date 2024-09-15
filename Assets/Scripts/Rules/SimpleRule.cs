@@ -3,4 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Rules/SimpleRule")]
-public class SimpleRule : Rule { }
+public class SimpleRule : Rule
+{
+    public override void Init()
+    {
+        IsCompleted = false;
+    }
+}

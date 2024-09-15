@@ -7,6 +7,7 @@ public abstract class AbstractItem : MonoBehaviour, IInteractable, ICollectable
     [SerializeField] private Sprite icon;
     public UnityEvent OnInteract => OnInteractEvent;
     public string InteractionText { get; }
+    public bool InInventory { get; private set; }
     private Transform playerT;
 
     public Sprite Icon => icon;
@@ -26,14 +27,32 @@ public abstract class AbstractItem : MonoBehaviour, IInteractable, ICollectable
 
     public virtual void Collect(Inventory inventory)
     {
-        gameObject.SetActive(false);
+        if (TryGetComponent<Rigidbody>(out var rigidbody))
+        {
+            rigidbody.isKinematic = true;
+        }
+        if (TryGetComponent<Collider>(out var collider))
+        {
+            collider.enabled = false;
+        }
+
+        InInventory = true;
         inventory.AddItem(this);
         OnInteract.Invoke();
     }
 
     public virtual void Drop()
     {
-        gameObject.SetActive(true);
+        if (TryGetComponent<Rigidbody>(out var rigidbody))
+        {
+            rigidbody.isKinematic = false;
+        }
+        if (TryGetComponent<Collider>(out var collider))
+        {
+            collider.enabled = true;
+        }
+
+        InInventory = false;
         transform.position = playerT.position + playerT.forward * 0.5f;
     }
 }
