@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Zombie : MonoBehaviour, IDamagable
@@ -14,12 +10,14 @@ public class Zombie : MonoBehaviour, IDamagable
     [SerializeField] private float visionRange = 10f;
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private int attackDamage = 5;
-    [SerializeField] private float attackCooldown = 2f;
-    
+    [SerializeField] private Animator animator;
+
     private NavMeshAgent navMeshAgent;
     private Player player;
-    private float timeSinceLastAttack;
-    
+    private bool isDead = false;
+
+    public bool IsPlayerVisible;
+
     private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
@@ -34,25 +32,36 @@ public class Zombie : MonoBehaviour, IDamagable
 
     private void Update()
     {
-        timeSinceLastAttack += Time.deltaTime;
-        
-        if (player == null) 
+        if (isDead) return;
+
+        if (player == null)
+        {
+            animator.SetBool("isWalking", false);
             return;
-        
+        }
+
         var toPlayer = player.transform.position - transform.position;
-        if (Vector3.Angle(transform.forward, toPlayer) <= fieldOfView/2)
+        IsPlayerVisible = Vector3.Angle(transform.forward, toPlayer) <= fieldOfView;
+        if (IsPlayerVisible)
         {
             navMeshAgent.SetDestination(player.transform.position);
-        }
-        
-        if(Vector3.Distance(transform.position, player.transform.position) <= attackRange)
-        {
-            if(timeSinceLastAttack >= attackCooldown)
+
+            if (toPlayer.magnitude > attackRange)
             {
-                player.ReceiveDamage(attackDamage);
-                timeSinceLastAttack = 0f;
+                animator.SetBool("isWalking", true);
+                animator.SetBool("isAttacking", false);
             }
+            else
+            {
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isAttacking", true);
+            }
+
+            return;
         }
+
+        animator.SetBool("isWalking", false);
+        animator.SetBool("isAttacking", false);
     }
 
     private void OnDestroy()
@@ -61,29 +70,51 @@ public class Zombie : MonoBehaviour, IDamagable
         detector.OnPlayerLost -= ResetPlayer;
     }
 
+    public void Attack()
+    {
+        if (player != null)
+        {
+            player.ReceiveDamage(attackDamage);
+        }
+    }
+
     public void SetPlayer(Player player)
     {
         this.player = player;
     }
-    
+
     public void ResetPlayer()
     {
+        animator.SetBool("isWalking", false);
         player = null;
+        navMeshAgent.ResetPath();
     }
-    
-    
+
     public void ReceiveDamage(int damage)
     {
+        if (isDead) return;
+
         health -= damage;
         if (health <= 0)
         {
             Die();
         }
+        else
+        {
+            animator.SetTrigger("isHit");
+        }
+    }
+
+    public void ResetHit()
+    {
+        animator.ResetTrigger("isHit");
     }
 
     public void Die()
     {
-        Debug.Log($"Zombie {transform.name} has been killed");
-        // Implement death logic here
+        isDead = true;
+        navMeshAgent.isStopped = true;
+        animator.SetBool("isDead", true);
+        // Дополнительная логика смерти (например, удаление зомби через время)
     }
 }
