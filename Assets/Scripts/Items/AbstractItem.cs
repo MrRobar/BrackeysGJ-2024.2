@@ -35,7 +35,11 @@ public abstract class AbstractItem : MonoBehaviour, IInteractable, ICollectable
         {
             collider.enabled = false;
         }
-
+        if (TryGetComponent<Animator>(out var animator))
+        {
+            animator.enabled = false;
+        }
+        enabled = true;
         InInventory = true;
         inventory.AddItem(this);
         OnInteract.Invoke();
@@ -51,7 +55,11 @@ public abstract class AbstractItem : MonoBehaviour, IInteractable, ICollectable
         {
             collider.enabled = true;
         }
-
+        if (TryGetComponent<Animator>(out var animator))
+        {
+            animator.enabled = true;
+        }
+        enabled = true;
         InInventory = false;
         transform.position = playerT.position + playerT.forward * 0.5f;
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MeleeWeapon : MonoBehaviour
+public class MeleeWeapon : AbstractItem
 {
     [SerializeField] private Animator animator;
     [SerializeField] private AudioClip swing;
