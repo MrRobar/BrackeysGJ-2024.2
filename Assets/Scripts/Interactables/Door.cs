@@ -8,14 +8,11 @@ public class Door : MonoBehaviour, IInteractable
 
     public void Interact(Player player)
     {
-        Debug.Log("Opening door...");
         OnInteract?.Invoke();
     }
 
     public void InteractWith(AbstractItem abstractItem, Player player)
     {
-        Debug.Log("Opening door with item...");
-        Debug.Log(abstractItem.name);
         OnInteract.Invoke();
     }
 }
