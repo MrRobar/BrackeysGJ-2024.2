@@ -7,10 +7,10 @@ public class Work : MonoBehaviour
 {
     public static event Action Completed;
     
-    public Order[] Orders => availableOrders.ToArray();
+    public static Order[] Orders => availableOrders.ToArray();
     
     [SerializeField] private MailBox[] deliveryTargets;
-    private List<Order> availableOrders; 
+    private static List<Order> availableOrders; 
 
     private void Awake()
     {

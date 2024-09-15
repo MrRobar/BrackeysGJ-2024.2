@@ -39,6 +39,19 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public int CountItemsOfType<T>()
+    {
+        int count = 0;
+        foreach (var item in items)
+        {
+            if (item is T)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
     private void SelectSlot(int slotId)
     {
         if (slotId == currentItemId)
