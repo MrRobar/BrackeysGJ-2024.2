@@ -30,12 +30,12 @@ public class AudioSystem : MonoBehaviour
         source.transform.SetParent(parentObj);
         source.transform.localPosition = Vector3.zero;
         source.PlayOneShot(clip);
-        StartCoroutine(WaitForEndOfClip(source));
+        StartCoroutine(WaitForEndOfClip(source, clip.length));
     }
 
-    private IEnumerator WaitForEndOfClip(AudioSource source)
+    private IEnumerator WaitForEndOfClip(AudioSource source, float clipLength)
     {
-        yield return new WaitForSeconds(source.clip.length);
+        yield return new WaitForSeconds(clipLength);
         source.transform.SetParent(transform);
         source.gameObject.SetActive(false);
     }

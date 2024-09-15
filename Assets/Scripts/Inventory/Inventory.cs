@@ -113,7 +113,6 @@ public class Inventory : MonoBehaviour
         {
             if (item == itemToRemove)
             {
-                Destroy(item.gameObject);
                 items[currentItemId] = null;
                 OnInventoryUpdated?.Invoke(items);
                 return;

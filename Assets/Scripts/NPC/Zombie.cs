@@ -114,6 +114,9 @@ public class Zombie : MonoBehaviour, IDamagable
     {
         isDead = true;
         navMeshAgent.isStopped = true;
+        navMeshAgent.enabled = false;
+        GetComponent<Collider>().enabled = false;
+        enabled = false;
         animator.SetBool("isDead", true);
         // Дополнительная логика смерти (например, удаление зомби через время)
     }
