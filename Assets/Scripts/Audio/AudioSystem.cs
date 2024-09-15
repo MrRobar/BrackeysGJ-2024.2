@@ -21,6 +21,7 @@ public class AudioSystem : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
         var template = new GameObject("AudioSource").AddComponent<AudioSource>();
+        template.volume = 0.2f;
         sourcePool = new PoolMono<AudioSource>(template, 15, true, transform);
     }
 
@@ -29,6 +30,7 @@ public class AudioSystem : MonoBehaviour
         var source = sourcePool.GetFreeElement();
         source.transform.SetParent(parentObj);
         source.transform.localPosition = Vector3.zero;
+        source.volume = 0.2f;
         source.PlayOneShot(clip);
         StartCoroutine(WaitForEndOfClip(source, clip.length));
     }
