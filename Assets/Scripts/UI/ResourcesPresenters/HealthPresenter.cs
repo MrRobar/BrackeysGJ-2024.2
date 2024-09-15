@@ -1,21 +1,22 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class HealthPresenter : MonoBehaviour
 {
-    [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private Player player;
     [SerializeField] private TextMeshProUGUI healthText;
     private void OnEnable()
     {
-        playerHealth.OnHealthChanged += UpdateHealth;
+        player.OnHealthChanged += UpdateText;
     }
 
     private void OnDisable()
     {
-        playerHealth.OnHealthChanged -= UpdateHealth;
+        player.OnHealthChanged -= UpdateText;
     }
 
-    private void UpdateHealth(int health)
+    private void UpdateText(int health)
     {
         healthText.text = health.ToString();
     }

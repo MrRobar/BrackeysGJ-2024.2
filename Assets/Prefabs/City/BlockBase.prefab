@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Size: {x: 8, y: 6.0624366, z: 32.655674}
   m_Center: {x: -0.009130478, y: 1.9377463, z: 13.687918}
   m_Area: 1
-  m_AffectedAgents: ffffffff
+  m_AffectedAgents: 00000000
 --- !u!1 &5076318265983598232
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Size: {x: 8, y: 6.113845, z: 32.936333}
   m_Center: {x: 0.011694908, y: 1.8985004, z: 13.536217}
   m_Area: 1
-  m_AffectedAgents: ffffffff
+  m_AffectedAgents: 00000000
 --- !u!1001 &1803734077604394508
 PrefabInstance:
   m_ObjectHideFlags: 0
